@@ -5,7 +5,7 @@ export default function HomeBody() {
     <>
       <div className="mt-10 p-2 flex flex-wrap flex-col justify-center items-center gap-3">
         <p className="text-4xl font-bold text-blue-600 ">
-          Connect with like-minded coders at Coders Connect!
+          Connect with like-minded coders at Coders Connect
         </p>
         <p className="text-gray-600">
           Our platform helps you discover and connect with incredible developers from around the world.
@@ -40,7 +40,7 @@ export default function HomeBody() {
         <p className="text-2xl text-black p-2 font-bold">Designed for developers like you</p>
         <p className="text-gray-500 pl-2 font-medium">
           Here at Coders Connect You'll be matched with fellow coders who share your passion and expertise. 
-          Join Coders Connect today and take your coding journey to new heights!
+          Join Coders Connect today and take your coding journey to new heights
         </p>
       </div>
     </>
