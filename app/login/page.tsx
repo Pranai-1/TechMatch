@@ -4,7 +4,7 @@ import { signIn, useSession } from "next-auth/react"
 import { redirect, useRouter } from "next/navigation"
 
 
-export default  function login(){
+export default  function Login(){
     const session=useSession()
     if(session.data){
         redirect("/")
