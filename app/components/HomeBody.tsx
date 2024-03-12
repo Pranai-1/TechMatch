@@ -39,7 +39,7 @@ export default function HomeBody() {
       <div className="mt-10 flex flex-wrap flex-col p-2 justify-start">
         <p className="text-2xl text-black p-2 font-bold">Designed for developers like you</p>
         <p className="text-gray-500 pl-2 font-medium">
-          Here at Coders Connect You'll be matched with fellow coders who share your passion and expertise. 
+          Here at Coders Connect You will be matched with fellow coders who share your passion and expertise. 
           Join Coders Connect today and take your coding journey to new heights
         </p>
       </div>
