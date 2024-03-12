@@ -1,0 +1,17 @@
+No need to pass session as a prop in session provider
+we cannot have getServerSideProps function in app directory
+
+server components which doesn't have "use client" can access session using getServerSession(options) directly,no need to create 
+a function named getServerAuthSession(ctx) in authoptions
+
+client components can use useSession() hook 
+
+middleware file should be at the same level of app directory
+
+
+//without a defined matcher this one line applies next-auth to entire project
+// export {default} from "next-auth/middleware"
+
+//To apply for matcher files
+
+// export const config={matcher:[]}
