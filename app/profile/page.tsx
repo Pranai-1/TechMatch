@@ -26,6 +26,8 @@ export default  function Profile(){
            <img src={data?.user.image} className="h-[180px] w-[180px] rounded-full"></img>
            <img src={`https://ghchart.rshah.org/${username}`} alt="Github chart" className="h-[180px] w-max p-2 bg-gray-300"></img>
           </div>
+          <p className="font-medium ml-8 py-1">Followers:{data?.user.profile.followers}</p>
+          <p className="font-medium ml-8">Following:{data?.user.profile.following}</p>
           <div className=" ml-8 flex flex-col gap-3">
             <p className="text-2xl font-bold p-2">{username}</p>
             <div className="flex justify-center items-center gap-2 h-max w-max">
