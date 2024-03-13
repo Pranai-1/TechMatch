@@ -2,11 +2,19 @@
 
 import { signIn, signOut, useSession } from "next-auth/react"
 import Link from "next/link"
-import { useState } from "react"
+import { redirect, useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 export default function Navbar(){
     const[clicked,setClicked]=useState<boolean>(false)
-  const {data}=useSession()
- // console.log(data)
+    const { data } = useSession();
+    const router = useRouter();
+  
+    useEffect(() => {
+      // Redirect after sign-out is complete
+      if (!data?.user) {
+        router.push("/");
+      }
+    }, [data]);
     return(
         <div className="h-max w-full bg-gray-100 p-2 flex justify-between rounded-lg">
            <p className="text-orange-600 p-2 text-2xl font-bold">Coders Connect</p>
@@ -36,7 +44,10 @@ export default function Navbar(){
                  <div className="absolute top-[75px] right-2 flex flex-col bg-white h-max w-max rounded-lg p-3 gap-2">
                     <Link className="p-2 hover:text-blue-600 cursor-pointer" href="/profile">profile</Link>
                     <button className="text-white font-medium p-2 bg-gray-600 rounded-xl self-center" 
-                     onClick={()=>signOut()}
+                     onClick={async()=>{
+                      await signOut();
+                      router.push("/")
+                    }}
                       >Logout</button>
                  </div>
                 )}
@@ -45,7 +56,7 @@ export default function Navbar(){
            ):(
            <>
             <button className="text-white font-medium p-2 bg-gray-600 rounded-xl self-center" 
-         onClick={()=>signIn()}
+         onClick={async()=>{await signIn()}}
            >Login</button>
            </>)}
           

@@ -6,16 +6,22 @@ import { redirect, useRouter } from "next/navigation"
 
 export default  function Login(){
     const session=useSession()
-    if(session.data){
-        redirect("/")
+    const router=useRouter()
+    // if(session){
+    //     redirect("/")
+        
+    // }
+    //console.log(session)
+    async function HandleSignIn(){
+      await signIn("github")
+        router.push("/")
     }
-    console.log(session)
     return(
         <div className="h-screen w-screen flex justify-center items-center bg-gray-200 ">
       
            <div className="h-max w-max bg-white p-5 rounded-lg">
             <button className="flex justify-center items-center gap-5 bg-black text-white p-4 font-medium rounded-lg"
-            onClick={async()=>{await signIn()}}>
+            onClick={()=>{HandleSignIn()}}>
             <svg width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" 
       className="mx-2 ">
         <path d="M7.49933 0.25C3.49635 0.25 0.25 3.49593 0.25 7.50024C0.25 10.703 2.32715 13.4206 5.2081 14.3797C5.57084 14.446 
