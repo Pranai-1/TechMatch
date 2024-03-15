@@ -58,15 +58,21 @@ export const options:NextAuthOptions={
       return session
     },
     async signIn({user,account,profile}){
+  
       let repos: any[]=[], languages:string[]=[]
       function setRepos(arr: any){
          repos=[...arr]
       }
+      
+      let obj={
+        login:"default"
+      }
       try{
          // eslint-disable-next-line
-        const response=await axios.get(profile?.repos_url)
+         const res=await axios.get(`https://api.github.com/user/${user.id}`)
+        const response=await axios.get(res.data?.repos_url)
         const repoArray=response.data
-      
+    obj.login=res.data.login
         repoArray.sort((a:any,b:any)=>b.size-a.size)
         if(repoArray.length<5)
         setRepos(repoArray)
@@ -103,7 +109,7 @@ export const options:NextAuthOptions={
             name:user.name,
             image:user.image,
             // eslint-disable-next-line
-            username:profile?.login,
+            username:obj.login,
             likes:0,
             languages:languages
   
@@ -119,7 +125,7 @@ export const options:NextAuthOptions={
             name: user.name, 
             image: user.image, 
             // eslint-disable-next-line
-            username: profile?.login, 
+            username: obj.login, 
             likes: x.likes, 
             languages:languages// Update the languages
           }
