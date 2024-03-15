@@ -63,6 +63,7 @@ export const options:NextAuthOptions={
          repos=[...arr]
       }
       try{
+         // eslint-disable-next-line
         const response=await axios.get(profile?.repos_url)
         const repoArray=response.data
       
@@ -101,6 +102,7 @@ export const options:NextAuthOptions={
             email:user.email,
             name:user.name,
             image:user.image,
+            // eslint-disable-next-line
             username:profile?.login,
             likes:0,
             languages:languages
@@ -111,13 +113,14 @@ export const options:NextAuthOptions={
       }else{
         const data = await prisma.user.update({
           where: {
-            id:x.id // Specify the condition to find the user to update
+            id:x.id 
           },
           data: {
-            name: user.name, // Update the name
-            image: user.image, // Update the image
-            username: profile?.login, // Update the username if available
-            likes: 0, // Update the likes count
+            name: user.name, 
+            image: user.image, 
+            // eslint-disable-next-line
+            username: profile?.login, 
+            likes: x.likes, 
             languages:languages// Update the languages
           }
         });
