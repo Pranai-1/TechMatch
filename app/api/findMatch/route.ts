@@ -6,16 +6,16 @@ const prisma = new PrismaClient();
 
 async function handler(req: NextRequest) {
   const body=await req.json()
-
+ console.log(body)
     try {
-        const user = await prisma.user.findFirst({ where: { userId: body.id } });
+        const user = await prisma.user.findFirst({ where: { userId:Number(body.id)} });
         if (user) {
             const languages = user.languages;
             console.log(languages);
 
             const matchedUser = await prisma.user.findFirst({
                 where: {
-                    userId: { not: body.id }, // Exclude the user itself
+                    userId: { not: Number(body.id) }, // Exclude the user itself
                     languages: {
                         has: languages[0]
                     }
@@ -27,7 +27,10 @@ async function handler(req: NextRequest) {
             } else {
                 const randomUser = await prisma.user.findFirst({
                     where: {
-                        userId: { not: body.id }, // Exclude the user itself
+                        userId: { not: Number(body.id) }, // Exclude the user itself
+                    },
+                    orderBy: {
+                       id:"asc"
                     }
                 });
                 return NextResponse.json({ message: "success in second", matchedUser: randomUser },{status:200});
@@ -36,7 +39,7 @@ async function handler(req: NextRequest) {
             return NextResponse.json({ message: "User not found", matchedUser: [] },{status:404});
         }
     } catch (error) {
-        // console.log(error);
+         console.log(error);
         return NextResponse.json({ message: "server error", matchedUser: [] },{status:500});
     } finally {
         prisma.$disconnect();

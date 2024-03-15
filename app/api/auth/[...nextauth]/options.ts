@@ -65,7 +65,8 @@ export const options:NextAuthOptions={
       }
       
       let obj={
-        login:"default"
+        login:"default",
+        bio:"no bio"
       }
       try{
          // eslint-disable-next-line
@@ -73,6 +74,7 @@ export const options:NextAuthOptions={
         const response=await axios.get(res.data?.repos_url)
         const repoArray=response.data
     obj.login=res.data.login
+    obj.bio=res.data.bio
         repoArray.sort((a:any,b:any)=>b.size-a.size)
         if(repoArray.length<5)
         setRepos(repoArray)
@@ -105,13 +107,14 @@ export const options:NextAuthOptions={
         const data=await prisma.user.create({
           data:{
             userId:Number(user.id),
-            email:user.email,
+            email:user.email,//updating email,i created few id with default email
             name:user.name,
             image:user.image,
             // eslint-disable-next-line
             username:obj.login,
             likes:0,
-            languages:languages
+            languages:languages,
+            bio: obj.bio
   
           }
         })
@@ -127,7 +130,8 @@ export const options:NextAuthOptions={
             // eslint-disable-next-line
             username: obj.login, 
             likes: x.likes, 
-            languages:languages// Update the languages
+            languages:languages,// Update the languages
+            bio: obj.bio
           }
         });
  

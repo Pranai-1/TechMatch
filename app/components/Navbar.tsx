@@ -17,7 +17,7 @@ export default function Navbar(){
     }, [data]);
     return(
         <div className="h-max w-full bg-gray-100 p-2 flex justify-between rounded-lg">
-           <p className="text-orange-600 p-2 text-2xl font-bold">TechMatch</p>
+           <p className="text-orange-600 p-2 text-2xl font-bold cursor-pointer" onClick={()=>router.push("/")}>TechMatch</p>
            {data?.user ?(
               <div className="flex justify-center gap-5 p-2 font-medium">
                 <button className="flex justify-center items-center w-max hover:text-red-600">
