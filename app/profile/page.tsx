@@ -8,6 +8,7 @@ import axios from "axios";
 import Link from "next/link";
 import getRepos from "../components/getRepos";
 import RepoCard from "../components/Repocard";
+import { nanoid } from "nanoid";
 
 export default  function Profile(){
     const[repos,setRepos]=useState<any[]>([])
@@ -64,7 +65,7 @@ export default  function Profile(){
                 </p>
                 <div className="grid grid-cols-2 gap-4 mt-5">
                 {repos.map((repo)=>(
-                    <RepoCard repo={repo}/>
+                    <RepoCard key={nanoid()} repo={repo}/>
                  ))}
                  </div>
             </div>
