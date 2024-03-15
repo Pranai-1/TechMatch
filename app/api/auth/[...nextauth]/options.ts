@@ -4,7 +4,12 @@ import GitHubProvider from "next-auth/providers/github";
 import jwt from "jsonwebtoken"
 import credentials from "next-auth/providers/credentials";
 import axios from "axios";
+import { PrismaClient } from "@prisma/client";
+import getRepos from "@/app/components/getRepos";
 
+
+
+const prisma=new PrismaClient()
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
@@ -28,9 +33,10 @@ export const options:NextAuthOptions={
     strategy: "jwt",
   },
   callbacks:{
+    
     async jwt({token,user}){
      if(user){
-       console.log(user)
+
        const response=await axios.get(`https://api.github.com/user/${user.id}`)
        token.id=user.id
        token.name = user.name;
@@ -38,7 +44,7 @@ export const options:NextAuthOptions={
        token.picture=user.image
        token.profile=response.data
      }
-   // console.log(token)
+
      return token
     },
     async session({session,token}){
@@ -50,7 +56,77 @@ export const options:NextAuthOptions={
         session.user.profile=token.profile
       }
       return session
-    }
+    },
+    async signIn({user,account,profile}){
+      let repos: any[]=[], languages:string[]=[]
+      function setRepos(arr: any){
+         repos=[...arr]
+      }
+      try{
+        const response=await axios.get(profile?.repos_url)
+        const repoArray=response.data
+      
+        repoArray.sort((a:any,b:any)=>b.size-a.size)
+        if(repoArray.length<5)
+        setRepos(repoArray)
+      else{
+              const x=repoArray.slice(0,5)
+              setRepos(x)
+      }
+      }catch(error){
+        console.log(error)
+      }
+
+      repos.map(async (repo)=>{
+        const {data}=await axios.get(repo.languages_url)
+        const keys=Object.keys(data)
+        for(const ele of keys){
+           if(!languages.includes(ele))
+           languages.push(ele)
+        }
+      
+      })
+
+      const x=await prisma.user.findFirst({
+        where:{
+          userId:Number(user?.id)
+        }
+      })
+  
+      if(!x){
+  
+        const data=await prisma.user.create({
+          data:{
+            userId:Number(user.id),
+            email:user.email,
+            name:user.name,
+            image:user.image,
+            username:profile?.login,
+            likes:0,
+            languages:languages
+  
+          }
+        })
+
+      }else{
+        const data = await prisma.user.update({
+          where: {
+            id:x.id // Specify the condition to find the user to update
+          },
+          data: {
+            name: user.name, // Update the name
+            image: user.image, // Update the image
+            username: profile?.login, // Update the username if available
+            likes: 0, // Update the likes count
+            languages:languages// Update the languages
+          }
+        });
+ 
+      }
+
+    
+      return true
+    },
    },
     providers: [
         GitHubProvider({

@@ -7,10 +7,10 @@ import { redirect, useRouter } from "next/navigation"
 export default  function Login(){
     const session=useSession()
     const router=useRouter()
-    // if(session){
-    //     redirect("/")
+    if(session){
+        redirect("/")
         
-    // }
+    }
     //console.log(session)
     async function HandleSignIn(){
       await signIn("github")

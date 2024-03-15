@@ -3,23 +3,44 @@
 import { useSession } from "next-auth/react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import Navbar from "../components/Navbar"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 export default  function Match(){
+    const[matchedUser,setMatchedUser]=useState<any>({})
    const session=useSession()
 const username=session.data?.user.profile.login.toLowerCase()
-
+const id=session.data?.user.id
    function openGmail(){
-  console.log(session?.data?.user.email)
+  //console.log(session?.data?.user.email)
     window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(session?.data?.user?.email || "")}`, '_blank');
 
    }
 
-   function findNextMatch(){
-    
-   }
+   useEffect(()=>{
+    findMatch()
+   },[])
+   async function findMatch(){
+    console.log(session.data?.user.id)
+    let body={
+        id
+    }
+    try{
+        const response=await axios.post("/api/findMatch",body)
+        setMatchedUser(response.data.matchedUser)
+    }
+    catch(error){
+        console.log(error)
+        setMatchedUser({})
+    }
 
+   }
+ 
+console.log(matchedUser)
     return(
         <div className="bg-gray-200 p-4 h-screen w-screen">
+            <Navbar/>
             <div className="flex justify-center gap-20 items-start m-10">
             <img src={session.data?.user.image} className="rounded-full "></img>
             <div className="flex flex-col p-2 gap-3">
@@ -65,7 +86,8 @@ const username=session.data?.user.profile.login.toLowerCase()
         </div>
         </div>
         <div className="flex p-2 justify-center gap-10 mt-5">
-              <img src={`https://github-readme-stats.vercel.app/api/top-langs?username=${username}&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&background=fff&layout=compact`}></img>
+              <img src={`https://github-readme-stats.vercel.app/api/top-langs?username=${username}&show_icons=true&include_all_commits
+              =true&count_private=true&hide_border=true&background=fff&layout=compact`}></img>
                <img src={`https://github-readme-streak-stats.herokuapp.com/?user=${username}&hide_border
                =true&stroke=0000&background=#fff&ring=e05397&fire=e05397&currStreakLabel=e05397`}></img>
             </div>
@@ -77,7 +99,7 @@ const username=session.data?.user.profile.login.toLowerCase()
             2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
         </svg>
         </button>
-        <button className="bg-green-300 rounded-full p-2" onClick={()=>{findNextMatch()}}>
+        <button className="bg-green-300 rounded-full p-2" onClick={()=>{findMatch()}}>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
         className="w-12 h-12   font-bold">
             <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />

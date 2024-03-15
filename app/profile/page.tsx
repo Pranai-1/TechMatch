@@ -12,13 +12,13 @@ import RepoCard from "../components/Repocard";
 export default  function Profile(){
     const[repos,setRepos]=useState<any[]>([])
     const {data}=useSession()
-    console.log(data)
+   // console.log(data)
    const username=data?.user.profile.login
    useEffect(()=>{
     getRepos(data?.user.profile.repos_url,setRepos)
    },[data])
   
-   console.log(repos)
+   //console.log(repos)
     return(
         <div className="h-full w-full p-4 bg-gray-200 flex flex-col gap-3">
           <Navbar/>

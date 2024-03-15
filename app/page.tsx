@@ -9,7 +9,7 @@ import { options } from './api/auth/[...nextauth]/options'
 
 export default async function Home() {
   const session=await getServerSession(options)
-  console.log(session)
+ // console.log(session)
   return (
    <div className='h-full w-full p-4 bg-gray-200 relative'>
     <Navbar/>

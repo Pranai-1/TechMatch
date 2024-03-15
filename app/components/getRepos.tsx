@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 export default async function getRepos(url:string,setRepos:any){
-
+           console.log("Hello")
         const response=await axios.get(url)
         const repoArray=response.data
       
