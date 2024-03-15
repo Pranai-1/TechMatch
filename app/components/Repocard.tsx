@@ -37,8 +37,8 @@ export default function RepoCard({repo}:{repo:any}){
 
  return(
     <div key={randomUUID()} className="h-max w-[60%] p-4 bg-white rounded-lg ">
-    <p className=" font-medium text-blue-600 cursor-pointer" onClick={()=>router.push(repo.html_url)}>{repo.name}</p>
-    <p className=" w-full h-[6px] relative overflow-hidden rounded-lg">
+    <p  key={randomUUID()} className=" font-medium text-blue-600 cursor-pointer" onClick={()=>router.push(repo.html_url)}>{repo.name}</p>
+    <p  key={randomUUID()}  className=" w-full h-[6px] relative overflow-hidden rounded-lg">
   <span style={{
     position: 'absolute',
     top: 0,
@@ -64,7 +64,7 @@ export default function RepoCard({repo}:{repo:any}){
     backgroundColor:"red"
   }}></span>
 </p>
-<div className="flex flex-col justify-start items-start gap-2 mt-3">
+<div  key={randomUUID()} className="flex flex-col justify-start items-start gap-2 mt-3">
 {languages[0]&&(
     <div className="flex justify-center items-center gap-2 ">
     <p className="h-1 w-1 bg-blue-700  rounded-lg"></p>
@@ -72,13 +72,13 @@ export default function RepoCard({repo}:{repo:any}){
     </div>
 )}
 {languages[1]&&(
-    <div className="flex justify-center items-center gap-2 ">
+    <div  key={randomUUID()} className="flex justify-center items-center gap-2 ">
     <p className="h-1 w-1 bg-yellow-300  rounded-lg"></p>
     <p className=" text-sm"> {languages[1]}</p>
     </div>
 )}
 {languages[2]&&(
-    <div className="flex justify-center items-center gap-2 ">
+    <div  key={randomUUID()} className="flex justify-center items-center gap-2 ">
     <p className="h-1 w-1 bg-red-700  rounded-lg"></p>
     <p className=" text-sm"> {languages[2]}</p>
     </div>
