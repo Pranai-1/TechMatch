@@ -1,4 +1,5 @@
 import axios from "axios"
+import { randomUUID } from "crypto"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
@@ -35,7 +36,7 @@ export default function RepoCard({repo}:{repo:any}){
     console.log(lang1)
 
  return(
-    <div className="h-max w-[60%] p-4 bg-white rounded-lg ">
+    <div key={randomUUID()} className="h-max w-[60%] p-4 bg-white rounded-lg ">
     <p className=" font-medium text-blue-600 cursor-pointer" onClick={()=>router.push(repo.html_url)}>{repo.name}</p>
     <p className=" w-full h-[6px] relative overflow-hidden rounded-lg">
   <span style={{
