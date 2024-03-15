@@ -21,7 +21,7 @@ export default function Spec2() {
 
         <p className="text-black font-bold text-xl flex gap-1">Financial Management</p>
         <span className="text-gray-500 font-medium flex flex-wrap">
-          Ensure the financial health of your coding endeavors with Coders Connect. Our audit-proof software is designed 
+          Ensure the financial health of your coding endeavors with TechMatch. Our audit-proof software is designed 
           for critical financial operations, including budgeting and month-end close processes.
         </span>
       </div>
@@ -45,7 +45,7 @@ export default function Spec2() {
 
         <p className="text-black font-bold text-xl">Design Collaboration</p>
         <p className="text-gray-500 font-medium">
-          Foster collaboration and creativity in coding and design projects with Coders Connect. Craft visually stunning experiences for
+          Foster collaboration and creativity in coding and design projects with TechMatch. Craft visually stunning experiences for
           your coding and product development with seamless cross-company collaboration.
         </p>
       </div>
@@ -63,7 +63,7 @@ export default function Spec2() {
 
         <p className="text-black font-bold text-xl">Operational Efficiency</p>
         <p className="text-gray-500 font-medium">
-          Optimize your coding operations with Coders Connect. Our customizable workflows are built to keep your coding projects on track, 
+          Optimize your coding operations with TechMatch. Our customizable workflows are built to keep your coding projects on track, 
           ensuring efficiency for both teams and individual developers.
         </p>
       </div>

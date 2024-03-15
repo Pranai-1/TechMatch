@@ -23,7 +23,7 @@ export default function Spec1() {
         </svg>
         <p className="text-black font-bold text-xl flex gap-1">Coders Networking</p>
         <span className="text-gray-500 font-medium flex flex-wrap">
-          Connect, collaborate, and code with Coders Connect. Seamlessly plan, create, and launch projects while achieving your coding milestones every month with our integrated networking platform.
+          Connect, collaborate, and code with TechMatch. Seamlessly plan, create, and launch projects while achieving your coding milestones every month with our integrated networking platform.
         </span>
       </div>
       <div className="flex flex-col w-[30%]">
@@ -43,7 +43,7 @@ export default function Spec1() {
         </svg>
         <p className="text-black font-bold text-xl">Legal Compliance</p>
         <p className="text-gray-500 font-medium">
-          Stay protected and compliant in the coding world with Coders Connect. Our structured workflows and customized permissions ensure legal compliance and safeguard your projects and devices.
+          Stay protected and compliant in the coding world with TechMatch. Our structured workflows and customized permissions ensure legal compliance and safeguard your projects and devices.
         </p>
       </div>
       <div className="flex flex-col w-[30%]">
@@ -66,7 +66,7 @@ export default function Spec1() {
         </svg>
         <p className="text-black font-bold text-xl">Automated Development</p>
         <p className="text-gray-500 font-medium">
-          Automate your coding tasks, streamline communication, and boost productivity with Coders Connect. Explore our vast library of templates to kickstart your projects and keep them running smoothly.
+          Automate your coding tasks, streamline communication, and boost productivity with TechMatch. Explore our vast library of templates to kickstart your projects and keep them running smoothly.
         </p>
       </div>
     </div>

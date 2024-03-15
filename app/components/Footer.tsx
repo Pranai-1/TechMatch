@@ -3,7 +3,7 @@ export default function Footer(){
     <div className="w-full h-max p-4 bg-gray-600  flex flex-col  text-white rounded-lg mt-5">
         <div className="flex justify-between items-center p-4">
            <div className="p-2 text-2xl font-bold">
-            <p>Coders Connect</p>
+            <p>TechMatch</p>
            </div>
            <div >
             <ul className="flex justify-end gap-3">
@@ -15,7 +15,7 @@ export default function Footer(){
            </div>
         </div>
         <span className="py-[0.5px] bg-white w-full mt-2"></span>
-        <span className="w-full flex justify-center items-center text-white font-medium p-4">© 2024 Coders Connect. All Rights Reserved.</span>
+        <span className="w-full flex justify-center items-center text-white font-medium p-4">© 2024 TechMatch. All Rights Reserved.</span>
         </div>
     )
 }
