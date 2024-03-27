@@ -9,6 +9,7 @@ import axios from "axios"
 
 export default  function Match(){
     const[matchedUser,setMatchedUser]=useState<any>({})
+    const[loading,setLoading]=useState<boolean>(true)
    const session=useSession()
    console.log(session.data)
 const username=session.data?.user.profile.login.toLowerCase()
@@ -28,6 +29,7 @@ const id=session.data?.user.id
         try{
             const response=await axios.post("/api/findMatch",body)
             setMatchedUser(response.data.matchedUser)
+            setLoading(false)
         }
         catch(error){
             console.log(error)
@@ -43,6 +45,10 @@ console.log(matchedUser)
     return(
         <div className="bg-gray-200 p-4 h-screen w-screen">
             <Navbar/>
+            {loading?(
+                <div className="h-screen w-screen flex justify-center items-center p-2 font-normal">Loading....</div>
+            ):(
+            <>
             <div className="flex justify-center gap-20 items-start m-10">
             <img src={matchedUser.image} className="rounded-full h-[140px]"></img>
             <div className="flex flex-col p-2 gap-3">
@@ -108,6 +114,8 @@ console.log(matchedUser)
         </svg>
         </button>
         </div>
+        </>
+        )}
         </div>
     )
 }
